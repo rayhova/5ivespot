@@ -22,8 +22,11 @@ Template Name:  Team Page (no sidebar)
  */
 
 get_header(); ?>
-
+<?php $sol_code = get_field( 'soliloquy_code' ); 
+       
+if ( function_exists( 'soliloquy' ) ) soliloquy( $sol_code ); ?>
 <div id="content-full" class="grid col-940">
+<h2 class="entry-title post-title"><?php the_title(); ?></h2>
 <div class="team-menu">
                                     <ul>
 <li><a class="peekaboo_link peekaboo-stephanie peekaboo_onhide" href="#"><span id="button" class="peekaboo_onhide team-button">Stephanie Hannah</span><span id="button" class="peekaboo_onshow team-button-hide" style="display:none;">Stephanie Hannah</span></a></li>
@@ -46,7 +49,7 @@ get_header(); ?>
 			<?php responsive_entry_before(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<?php responsive_entry_top(); ?>
-<h2 class="entry-title post-title"><?php the_title(); ?></h2>
+
 				
 				<div class="post-entry">
 <div class="peekaboo_content peekaboo-stephanie peekaboo_onhide" style="display:none;"><div id="team-content"><div class="team-left"><div class="image"><img src="/wp-content/themes/5ivespot/images/team/stephanie.jpg"></div><div class="info"><h3>Stephanie Hannah</h3><hr><h4>Owner</h4></div><div class="email"><a href="mailto:"Stephanie@5iveSpotBar.com">Stephanie@5iveSpotBar.com</a></div></div><div class="team-right"><p>Stephanie enters the industry with a true love, passion and understanding of courteous service and quality management.  With over 27 years of corporate work life, she uses her past experience in restaurant management, customer relations and creative design to produce a unique, personable and worthy bar and restaurant atomosphere.  Prior to owing The 5ive SPOT, Stephanie spent several years as an IT administrator and operations manager in the healthcare consulting industry.  Her desire to own her own business began years ago.  Always having an appreciation and affinity for music, entertainment, cocktail mixology and the nightlife business, she made the journey from the corporate world an easy and exciting, albeit – ‘strange’ transition.  In her own words: “When you’ve worked for other people more than half of your life, you question if your decisions and the people around you are the right ones, but it’s so very rare and incredible when your wishes and desires meet your reality, so if that happens, you must jump out on faith – and never look back”.  Stephanies’ hope is that this is the first step of many in building The 5ive SPOT company, brand and reputation as one of the best in the industry.</p></div></div></div>

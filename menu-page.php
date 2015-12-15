@@ -22,7 +22,9 @@ Template Name:  Menu Page (no sidebar)
  */
 
 get_header(); ?>
-
+<?php $sol_code = get_field( 'soliloquy_code' ); 
+       
+if ( function_exists( 'soliloquy' ) ) soliloquy( $sol_code ); ?>
 <div id="content-full" class="grid col-940">
 
 	<?php if( have_posts() ) : ?>
