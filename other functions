@@ -1,0 +1,336 @@
+// Highlight and link color
+    $wp_customize->add_setting( 'rgdeuce_menu_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_menu_color', array(
+        'label'	   => 'Main Menu Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_menu_color',
+    ) ) );
+    $wp_customize->add_setting( 'rgdeuce_top-menu_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_top-menu_color', array(
+        'label'	   => 'Top Menu Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_top-menu_color',
+    ) ) );
+    $wp_customize->add_setting( 'rgdeuce_footer-menu_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_footer-menu_color', array(
+        'label'	   => 'Footer Menu Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_footer-menu_color',
+    ) ) );
+     $wp_customize->add_setting( 'rgdeuce_mobile-menu_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_mobile-menu_color', array(
+        'label'	   => 'Mobile Menu Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_mobile-menu_color',
+    ) ) );
+    
+    $wp_customize->add_setting( 'rgdeuce_h1_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_h1_color', array(
+        'label'	   => 'h1 Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_h1_color',
+    ) ) );
+    $wp_customize->add_setting( 'rgdeuce_h2_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_h2_color', array(
+        'label'	   => 'h2 Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_h2_color',
+    ) ) );
+    $wp_customize->add_setting( 'rgdeuce_link_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_link_color', array(
+        'label'	   => 'Link and Highlight Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_link_color',
+    ) ) );
+    $wp_customize->add_setting( 'rgdeuce_footer-link_color', array(
+        'default'           => '#ff0000',
+        'transport'         => 'postMessage',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ) );
+ 
+    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'rgdeuce_footer-link_color', array(
+        'label'	   => 'Link and Highlight Color',
+        'section'  => 'colors',
+        'settings' => 'rgdeuce_footer-link_color',
+    ) ) );
+
+/**
+ * Add CSS in <head> for styles handled by the theme customizer
+ *
+ * @since 1.5
+ */
+function rgdeuce_add_customizer_css() {
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_link_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		a, a:visited {
+			color: <?php echo $color; ?>;
+		}
+		
+	</style>
+<?php }
+
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_menu_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		nav ul#primary-menu li a
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_top-menu_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		nav ul#top-menu li a
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_footer-menu_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		nav ul#footer-menu li a
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_h1_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		h1
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_h2_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		h2
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+{
+	$color = rgdeuce_sanitize_hex_color( get_theme_mod( 'rgdeuce_footer-link_color' ) );
+	?>
+	<!-- rgdeuce customizer CSS -->
+	<style>
+		footer a
+		{
+			color: <?php echo $color; ?>;
+		}
+	</style>
+<?php }
+
+add_action( 'wp_head', 'rgdeuce_add_customizer_css' );
+
+
+
+
+
+
+
+
+function
+
+function rgdeuce_get_social_icons() {
+
+	$rgdeuce_options = rgdeuce_get_options();
+
+	$sites = array (
+		'twitter'     => __( 'Twitter', 'responsive' ),
+		'facebook'    => __( 'Facebook', 'responsive' ),
+		'linkedin'    => __( 'LinkedIn', 'responsive' ),
+		'youtube'     => __( 'YouTube', 'responsive' ),
+		'stumbleupon' => __( 'StumbleUpon', 'responsive' ),
+		'rss'         => __( 'RSS Feed', 'responsive' ),
+		'googleplus'  => __( 'Google+', 'responsive' ),
+		'instagram'   => __( 'Instagram', 'responsive' ),
+		'pinterest'   => __( 'Pinterest', 'responsive' ),
+		'yelp'        => __( 'Yelp!', 'responsive' ),
+		'vimeo'       => __( 'Vimeo', 'responsive' ),
+		'foursquare'  => __( 'foursquare', 'responsive' ),
+	);
+
+	$html = '<ul class="social-icons">';
+	foreach( $sites as $key => $value ) {
+		if ( !empty( $rgdeuce_options[$key . '_uid'] ) ) {
+			$html .= '<li class="' . esc_attr( $key ) . '-icon"><a href="' . $rgdeuce_options[$key . '_uid'] . '">' . '<img src="' . rgdeuce_child_uri( '/core/icons/' . esc_attr( $key ) . '-icon.png' ) . '" width="24" height="24" alt="' . esc_html( $value ) . '">' . '</a></li>';
+		}
+	}
+	$html .= '</ul><!-- .social-icons -->';
+
+	return $html;
+
+}
+
+
+/*--------------------------------------------------------------
+	// SOCIAL MEDIA SECTION
+--------------------------------------------------------------*/
+
+	$wp_customize->add_section( 'rgdeuce_social_media', array(
+		'title'             => __( 'Social Icons', 'rgdeuce' ),
+		'priority'          => 40,
+		'description'       => __( 'Enter the URL to your account for each service for the icon to appear in the header.', 'rgdeuce' ),
+	) );
+
+	// Add Twitter Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[twitter_uid]', array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ) );
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_twitter', array(
+		'label'             => __( 'Twitter', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[twitter_uid]'
+	) ) );
+
+	// Add Facebook Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[facebook_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_facebook', array(
+		'label'             => __( 'Facebook', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[facebook_uid]'
+	) ) );
+
+	// Add LinkedIn Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[linkedin_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_linkedin', array(
+		'label'             => __( 'LinkedIn', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[linkedin_uid]'
+	) ) );
+
+	// Add Youtube Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[youtube_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_youtube', array(
+		'label'             => __( 'Tumblr', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[youtube_uid]'
+	) ) );
+
+	// Add Google+ Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[googleplus_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_googleplus', array(
+		'label'             => __( 'Google+', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[googleplus_uid]'
+	) ) );
+
+	// Add RSS Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[rss_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_rss', array(
+		'label'             => __( 'RSS Feed', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[rss_uid]'
+	) ) );
+
+	// Add Instagram Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[instagram_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_instagram', array(
+		'label'             => __( 'Instagram', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[instagram_uid]'
+	) ) );
+
+	// Add Pinterest Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[pinterest_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_pinterest', array(
+		'label'             => __( 'Pinterest', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[pinterest_uid]'
+	) ) );
+
+	// Add StumbleUpon Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[stumbleupon_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_stumble', array(
+		'label'             => __( 'StumbleUpon', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[stumbleupon_uid]'
+	) ) );	
+
+	// Add Vimeo Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[vimeo_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_vimeo', array(
+		'label'             => __( 'Vimeo', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[vimeo_uid]'
+	) ) );
+
+	// Add SoundCloud Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[yelp_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_yelp', array(
+		'label'             => __( 'Yelp', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[yelp_uid]'
+	) ) );
+
+	// Add Foursquare Setting
+
+	$wp_customize->add_setting( 'rgdeuce_theme_options[foursquare_uid]' , array( 'sanitize_callback' => 'esc_url_raw', 'type' => 'option' ));
+	$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'res_foursquare', array(
+		'label'             => __( 'Foursquare', 'rgdeuce' ),
+		'section'           => 'rgdeuce_social_media',
+		'settings'          => 'rgdeuce_theme_options[foursquare_uid]'
+	) ) );

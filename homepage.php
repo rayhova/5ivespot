@@ -1,67 +1,25 @@
 <?php
-
-// Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
  * Homepage Template
  *
-Template Name:  Homepage
+Template Name:  Homepage	
  *
- * @file           homepage.php
- * @package        Responsive
- * @author         Emil Uzelac
- * @copyright      2003 - 2014 CyberChimps
- * @license        license.txt
- * @version        Release: 1.0
- * @filesource     wp-content/themes/responsive/content-right-page.php
- * @link           http://codex.wordpress.org/Theme_Development#Pages_.28page.php.29
- * @since          available since Release 1.0
+ *
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package RGDeuce
  */
 
 get_header(); ?>
-<?php if ( function_exists( 'soliloquy' ) ) { soliloquy( '1964' ); } ?>
-<div id="content-full" class="grid col-620">
 
-	<?php if( have_posts() ) : ?>
-
-		<?php while( have_posts() ) : the_post(); ?>
-
-			<?php get_template_part( 'loop-header' ); ?>
-
-			<?php responsive_entry_before(); ?>
-			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-				<?php responsive_entry_top(); ?>
-				
-				<div class="post-entry">
-					<?php the_content( __( 'Read more &#8250;', 'responsive' ) ); ?>
-					<?php wp_link_pages( array( 'before' => '<div class="pagination">' . __( 'Pages:', 'responsive' ), 'after' => '</div>' ) ); ?>
-				</div>
-				<!-- end of .post-entry -->
-
-				<?php get_template_part( 'post-data' ); ?>
-
-				<?php responsive_entry_bottom(); ?>
-			</div><!-- end of #post-<?php the_ID(); ?> -->
-			<?php responsive_entry_after(); ?>
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
 
 			
 
-		<?php
-		endwhile;
+		</main><!-- #main -->
+	</div><!-- #primary -->
 
-		get_template_part( 'loop-nav' );
 
-	else :
-
-		get_template_part( 'loop-no-posts' );
-
-	endif;
-	?>
-
-</div><!-- end of #content-full -->
-
-<?php get_sidebar(right); ?>
-<?php get_footer(); ?>
+<?php get_footer(home); ?>

@@ -1,157 +1,82 @@
-<?php
-
-// Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) {
-	exit;
-}
-
+	<?php
 /**
- * Header Template
+ * The header for our theme.
  *
+ * This is the template that displays all of the <head> section and everything up until <div id="content">
  *
- * @file           header.php
- * @package        Responsive
- * @author         Emil Uzelac
- * @copyright      2003 - 2014 CyberChimps
- * @license        license.txt
- * @version        Release: 1.3
- * @filesource     wp-content/themes/responsive/header.php
- * @link           http://codex.wordpress.org/Theme_Development#Document_Head_.28header.php.29
- * @since          available since Release 1.0
+ * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
+ *
+ * @package RGDeuce
  */
-?>
-	<!doctype html>
-	<!--[if !IE]>
-	<html class="no-js non-ie" <?php language_attributes(); ?>> <![endif]-->
-	<!--[if IE 7 ]>
-	<html class="no-js ie7" <?php language_attributes(); ?>> <![endif]-->
-	<!--[if IE 8 ]>
-	<html class="no-js ie8" <?php language_attributes(); ?>> <![endif]-->
-	<!--[if IE 9 ]>
-	<html class="no-js ie9" <?php language_attributes(); ?>> <![endif]-->
-	<!--[if gt IE 9]><!-->
-<html class="no-js" <?php language_attributes(); ?>> <!--<![endif]-->
-	<head>
 
-		<meta charset="<?php bloginfo( 'charset' ); ?>"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+?><!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+<meta charset="<?php bloginfo( 'charset' ); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<?php wp_head(); ?>
+<?php 
 
-		<title><?php wp_title( '&#124;', true, 'right' ); ?></title>
+    // declare $post global if used outside of the loop
+    global $post;
 
-		<link rel="profile" href="http://gmpg.org/xfn/11"/>
-		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>"/>
+    // check to see if the theme supports Featured Images, and one is set
+    if (current_theme_supports( 'post-thumbnails' ) && has_post_thumbnail( $post->ID )) {
+            
+        // specify desired image size in place of 'full'
+        $page_bg_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
+        $page_bg_image_url = $page_bg_image[0]; // this returns just the URL of the image
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script> 
-<!-- clearit form script -->
-<script type="text/javascript">
+    } else {
+        // the fallback – our current active theme's default bg image
+        $page_bg_image_url = get_background_image();
+    }
 
-jQuery(document).ready(function() {
-
-	jQuery.fn.cleardefault = function() {
-	return this.focus(function() {
-		if( this.value == this.defaultValue ) {
-			this.value = "";
-		}
-	}).blur(function() {
-		if( !this.value.length ) {
-			this.value = this.defaultValue;
-		}
-	});
-};
-jQuery(".clearit input, .clearit textarea").cleardefault();
-
-});
-
-</script>
-<!-- clearit form script ends -->
-
-<!--- google analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-49342802-1', '5ivespotbar.com');
-  ga('send', 'pageview');
-
-</script>
-<!--- google analytics end -->
-		<?php wp_head(); ?>
+    // And below, spit out the <style> tag... ?>
+    <style type="text/css" id="custom-background-css-override">
+        body { background: url('<?php echo $page_bg_image_url; ?>') center; }
+    </style>
 
 
-	</head>
+</head>
 
 <body <?php body_class(); ?>>
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'rgdeuce' ); ?></a>
+<div id="utility-bar"><div class="container container-fluid">
+<div class="col-md-5">
+</div>
 
-<?php responsive_container(); // before container hook ?>
-<div id="container" class="hfeed">
-
-<?php responsive_header(); // before header hook ?>
-	<div id="header">
-<div id="topsocial">
-<a href="https://www.facebook.com/The5iveSpot" target="_blank" class="fb" alt="Facebook"></a>
-<a href="https://twitter.com/the5ivespotbar" target="_blank" class="twit" alt="Twitter"></a>
-<a href="http://google.com/+" target="_blank"  class="gplus" alt="Google +"></a>
-        </div>
-		<?php responsive_header_top(); // before header content hook ?>
-
-		<?php if( has_nav_menu( 'top-menu', 'responsive' ) ) { ?>
-			<?php wp_nav_menu( array(
-								   'container'      => '',
-								   'fallback_cb'    => false,
-								   'menu_class'     => 'top-menu',
-								   'theme_location' => 'top-menu'
-							   )
-			);
-			?>
-		<?php } ?>
-
-		<?php responsive_in_header(); // header hook ?>
-
-		<?php if( get_header_image() != '' ) : ?>
-
-			<div id="logo">
-				<a href="<?php echo home_url( '/' ); ?>"><img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="<?php bloginfo( 'name' ); ?>"/></a>
-			</div><!-- end of #logo -->
-
-		<?php endif; // header image was removed ?>
-
-		<?php if( !get_header_image() ) : ?>
-
-			<div id="logo">
-				<span class="site-name"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
-				<span class="site-description"><?php bloginfo( 'description' ); ?></span>
-			</div><!-- end of #logo -->
-
-		<?php endif; // header image was removed (again) ?>
-
-		<?php get_sidebar( 'top' ); ?>
-		<?php wp_nav_menu( array(
-							   'container'       => 'div',
-							   'container_class' => 'main-nav',
-							   'fallback_cb'     => 'responsive_fallback_menu',
-							   'theme_location'  => 'header-menu'
-						   )
-		);
-		?>
-
-		<?php if( has_nav_menu( 'sub-header-menu', 'responsive' ) ) { ?>
-			<?php wp_nav_menu( array(
-								   'container'      => '',
-								   'menu_class'     => 'sub-header-menu',
-								   'theme_location' => 'sub-header-menu'
-							   )
-			);
-			?>
-		<?php } ?>
-
-		<?php responsive_header_bottom(); // after header content hook ?>
-
-	</div><!-- end of #header -->
-<?php responsive_header_end(); // after header container hook ?>
-
-<?php responsive_wrapper(); // before wrapper container hook ?>
-	<div id="wrapper" class="clearfix">
-<?php responsive_wrapper_top(); // before wrapper content hook ?>
-<?php responsive_in_wrapper(); // wrapper hook ?>
+<div class="col-md-5"><nav><?php wp_nav_menu( array( 'theme_location' => 'top-menu', 'menu_id' => 'top-menu' ) ); ?></nav></div>
+</div>
+</div><!-- #utility-bar -->
+	<header id="masthead" class="site-header" role="banner"><div class="container container-fluid">
+		<div class="col-md-4">
+		<div class="site-branding">
+			<?php if ( get_theme_mod( 'rgdeuce_logo' ) ) : ?>
+    <div class='site-logo'>
+        <a href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>' rel='home'><img src='<?php echo esc_url( get_theme_mod( 'rgdeuce_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>'></a>
+    </div>
+<?php else : ?>
+				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+			
+			<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+			<?php endif; ?>
+		</div><!-- .site-branding -->
+</div>
+<div class="col-md-8">
+		<nav id="site-navigation" class="main-navigation" role="navigation">
+			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'rgdeuce' ); ?></button>
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu' ) ); ?>
+		</nav><!-- #site-navigation -->
+		</div>
+		</div><!-- .container -->
+	</header><!-- #masthead -->
+	<?php if (is_front_page() ) { ?>  <?php } else { ?>
+	<header class="entry-header">
+		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+	</header><!-- .entry-header --> <?php } ?>
+<div class="container container-fluid content-container">
+	<div id="content" class="site-content">
