@@ -17,31 +17,14 @@
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <?php wp_head(); ?>
-<?php 
 
-    // declare $post global if used outside of the loop
-    global $post;
-
-    // check to see if the theme supports Featured Images, and one is set
-    if (current_theme_supports( 'post-thumbnails' ) && has_post_thumbnail( $post->ID )) {
-            
-        // specify desired image size in place of 'full'
-        $page_bg_image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-        $page_bg_image_url = $page_bg_image[0]; // this returns just the URL of the image
-
-    } else {
-        // the fallback – our current active theme's default bg image
-        $page_bg_image_url = get_background_image();
-    }
-
-    // And below, spit out the <style> tag... ?>
     <style type="text/css" id="custom-background-css-override">
-        body { background: url('<?php echo $page_bg_image_url; ?>') center; }
+        body { background: url('/wp-content/uploads/2014/01/Image00018.jpg') center; }
     </style>
     <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script type="text/javascript">
-$(document).ready(function() {
+jQuery(document).ready(function() {
     $('#menu-toggle').click(function() {
         if($('#menu-toggle').hasClass('closed')) {
             $('#mobile-nav').animate({left: "0"}, 400);
@@ -54,6 +37,7 @@ $(document).ready(function() {
     });
 });
 </script>
+
 
 </head>
 
@@ -99,9 +83,9 @@ $(document).ready(function() {
 		</div>
 		</div><!-- .container -->
 	</header><!-- #masthead -->
-	<?php if (is_front_page() ) { ?>  <?php } else { ?>
+	
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header --> <?php } ?>
+		<h1 class="entry-title">Events</h1>
+	</header><!-- .entry-header --> 
 <div class="container container-fluid content-container">
 	<div id="content" class="site-content">

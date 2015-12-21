@@ -39,6 +39,8 @@
 	<div class="container container-fluid">
 	<div class="col-md-5">
 		<div class="site-info">
+		©2015 5ive SPOT - Neighborhood Kitchen & Bar <br />
+		All Rights Reserved <br />
 			<a href="http://rgdeucemedia.com" target="_blank">Powered By RGDeuce Media</a>
 			
 		</div><!-- .site-info -->

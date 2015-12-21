@@ -108,6 +108,15 @@ function rgdeuce_widgets_init() {
 		'after_title'   => '</h2>',
 	) );
 	register_sidebar( array(
+		'name'          => esc_html__( 'Contact Us -Sidebar', 'rgdeuce' ),
+		'id'            => 'contact-sidebar',
+		'description'   => '',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
+	) );
+	register_sidebar( array(
 		'name' => __( 'Footer – Left', 'rgdeuce' ),
 		'id' => 'footer-left',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -159,6 +168,8 @@ add_action( 'init', 'register_mobile_menu' );
  */
 function rgdeuce_scripts() {
 	wp_enqueue_style( 'rgdeuce-style', get_stylesheet_uri() );
+
+	wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
 
 	wp_enqueue_script( 'rgdeuce-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 	/*wp_enqueue_script( 'header-resize', get_template_directory_uri() . '/js/header-resize.js', array(), '1.0', true ); */
@@ -299,3 +310,7 @@ function custom_post_type() {
 */
 
 add_action( 'init', 'custom_post_type', 0 );
+add_filter('gform_init_scripts_footer', 'init_scripts');
+function init_scripts() {
+    return true;
+}
